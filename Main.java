@@ -12,8 +12,6 @@ public class Main {
 		String s;
 		char c = "O";
 		boolean check;
-		
-		
 		com.init();
 		System.out.println("For closing the application give X");
 		while(c != "X") {
@@ -24,7 +22,8 @@ public class Main {
 				System.out.println("Please enter 1st byte to send (LOW)");
 				s = br.readLine();
 				if(s.equals("X")){
-					exit();
+					com.close();
+					continue;
 				}
 				if(s.length() != 1) {
 					System.out.println("Wrong parameters, please give only one byte!");
@@ -44,18 +43,13 @@ public class Main {
 				}
 				if(check == true) {
 					com.sendData(b1,b2);
-				}
-				
+				}			
 				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 	}
 		
-	}
-	
-	public static void exit() {
-		com.close();
 	}
 
 }
