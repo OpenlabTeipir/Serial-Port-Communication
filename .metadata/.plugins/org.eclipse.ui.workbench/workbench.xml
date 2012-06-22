@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="47" version="2.0">
+<workbench progressCount="52" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="1154" y="175">
 <fastViewData fastViewLocation="1024"/>
@@ -42,7 +42,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" partName="Main.java" title="Main.java" tooltip="C:\Users\Aggelos\Desktop\Laptop Backup\Serial-Port-Communication\Main.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/Users/Aggelos/Desktop/Laptop%20Backup/Serial-Port-Communication/Main.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1186" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="684" selectionTopPixel="79"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="USBCommunication.java" partName="USBCommunication.java" title="USBCommunication.java" tooltip="C:\Users\Aggelos\Desktop\Laptop Backup\Serial-Port-Communication\USBCommunication.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/Users/Aggelos/Desktop/Laptop%20Backup/Serial-Port-Communication/USBCommunication.java"/>
@@ -284,8 +284,11 @@
 <item historyLabel="USBCommunication.java" index="1">
 <position info="not_deleted" x="3337" y="0"/>
 </item>
-<item active="true" historyLabel="Main.java" index="0">
+<item historyLabel="Main.java" index="0">
 <position info="not_deleted" x="1184" y="0"/>
+</item>
+<item active="true" historyLabel="Main.java" index="0">
+<position info="not_deleted" x="666" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -301,7 +304,6 @@
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
-<trimItem IMemento.internal.id="org.eclipse.ui.internal.intro.impl.presentations.IntroLaunchBar"/>
 </trimArea>
 </trimLayout>
 </window>
