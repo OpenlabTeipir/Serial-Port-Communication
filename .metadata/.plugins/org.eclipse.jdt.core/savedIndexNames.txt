@@ -1,0 +1,1 @@
+INDEX VERSION 1.126+C:\Users\Aggelos\Desktop\Laptop Backup\Serial-Port-Communication\.metadata\.plugins\org.eclipse.jdt.core
