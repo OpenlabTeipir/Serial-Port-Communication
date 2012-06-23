@@ -14,7 +14,6 @@ import gnu.io.SerialPortEventListener;
 public class USBCommunication {
 	
 	SerialPort serialPort;
-	 //The port we are going to use for Linux.
     private static final String LINUX_PORT = "/dev/ttyUSB0"; //The port we are going to use for linux.
     //Buffered input stream <- port
     private InputStream input;
@@ -78,14 +77,13 @@ public class USBCommunication {
     public synchronized void serialEvent (SerialPortEvent e) {
         if (e.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
             try {
+                //To be implemented with database..
             	FileWriter fw = new FileWriter("output.txt", true);
             	BufferedWriter bw = new BufferedWriter(fw);
                 int b1 = input.read();
                 int b2 = input.read();
                 int low = b1 & 0xff; //Defining byte0 range [0-255]
                 int high = b2 & 0xff; //Defining byte1 rang [0-255]
-                //System.out.println("Read bytes: " + b2 + " : " + high + 
-                //							  " " + b1 + " : " + low );
                 bw.write("" + high + low);
                 bw.newLine();
                 bw.flush();
