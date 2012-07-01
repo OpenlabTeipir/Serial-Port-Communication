@@ -110,7 +110,7 @@ public class USBCommunication {
 				bw.flush();
 				bw.close();
 				SQL.Query("INSERT INTO " + EVENTS_LOG_TABLE + " VALUES('" + b1
-						+ "', '" + b2 + "', now();");
+						+ "', '" + b2 + "', DATETIME();");
 
 			} catch (Exception ex) {
 				System.err.println(ex.toString());
@@ -124,7 +124,7 @@ public class USBCommunication {
 			ResultSet s;
 			// Log the action
 			SQL.Query("INSERT INTO " + COMMANDS_LOG_TABLE + " VALUES('" + b1
-					+ "', '" + b2 + "', now();");
+					+ "', '" + b2 + "', DATETIME();");
 			// Check for command existence
 			s = SQL.Select("SELECT byte1, byte2 FROM " + COMMANDS_TABLE
 					+ " WHERE byte1 =  " + b1 + " AND byte2 = " + b2 + ";");
