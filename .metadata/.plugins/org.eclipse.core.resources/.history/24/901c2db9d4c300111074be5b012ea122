@@ -151,7 +151,6 @@ public class USBCommunication {
 				+ TEMPERATURES_TABLE + "ORDER BY tid DESC LIMIT 1;"));
 	}
 
-	/* Shows Outdoors Temperature */
 	public void showOutdoorsTemp() {
 		SQL.showSelectResult(SQL.Select("SELECT outdoors_temp FROM "
 				+ TEMPERATURES_TABLE + "ORDER BY tid DESC LIMIT 1;"));

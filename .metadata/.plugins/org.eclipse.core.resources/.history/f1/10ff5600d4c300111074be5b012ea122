@@ -36,7 +36,6 @@ public class USBCommunication {
 	private static final String COMMANDS_TABLE = "commands";
 	private static final String COMMANDS_LOG_TABLE = "command_log";
 	private static final String EVENTS_LOG_TABLE = "event_log";
-	private static final String TEMPERATURES_TABLE = "temperatures";
 
 	// ... More to be added
 
@@ -143,18 +142,6 @@ public class USBCommunication {
 			serialPort.removeEventListener();
 			serialPort.close();
 		}
-	}
-
-	/* Shows Indoors Temperature */
-	public void showIndoorsTemp() {
-		SQL.showSelectResult(SQL.Select("SELECT indoors_temp FROM "
-				+ TEMPERATURES_TABLE + "ORDER BY tid DESC LIMIT 1;"));
-	}
-
-	/* Shows Outdoors Temperature */
-	public void showOutdoorsTemp() {
-		SQL.showSelectResult(SQL.Select("SELECT outdoors_temp FROM "
-				+ TEMPERATURES_TABLE + "ORDER BY tid DESC LIMIT 1;"));
 	}
 
 }

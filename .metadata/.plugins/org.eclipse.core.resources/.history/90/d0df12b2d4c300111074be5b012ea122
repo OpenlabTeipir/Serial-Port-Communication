@@ -145,13 +145,11 @@ public class USBCommunication {
 		}
 	}
 
-	/* Shows Indoors Temperature */
 	public void showIndoorsTemp() {
 		SQL.showSelectResult(SQL.Select("SELECT indoors_temp FROM "
 				+ TEMPERATURES_TABLE + "ORDER BY tid DESC LIMIT 1;"));
 	}
 
-	/* Shows Outdoors Temperature */
 	public void showOutdoorsTemp() {
 		SQL.showSelectResult(SQL.Select("SELECT outdoors_temp FROM "
 				+ TEMPERATURES_TABLE + "ORDER BY tid DESC LIMIT 1;"));

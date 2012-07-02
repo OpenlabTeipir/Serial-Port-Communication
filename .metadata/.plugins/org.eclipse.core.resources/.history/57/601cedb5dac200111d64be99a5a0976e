@@ -1,5 +1,0 @@
-package smarthome.serial;
-
-public class USBCommunication {
-
-}

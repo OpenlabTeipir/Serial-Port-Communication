@@ -9,6 +9,7 @@ public class Main {
 	private static USBCommunication com = new USBCommunication();
 
 	public static void main(String[] args) {
+		log ("JavaDaemon Started");
 		//Initialize bytes to 00h -> Reset 
 		byte b1 = 0, b2 = 0;
 		String s;
@@ -56,6 +57,6 @@ public class Main {
 			}
 		}
 
-	}	
+	}
 
 }

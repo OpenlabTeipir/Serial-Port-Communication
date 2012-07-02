@@ -9,6 +9,9 @@ public class Main {
 	private static USBCommunication com = new USBCommunication();
 
 	public static void main(String[] args) {
+		Thread runtimeHook = new Thread() {
+			public void run() {
+				shutdownHook();}};
 		//Initialize bytes to 00h -> Reset 
 		byte b1 = 0, b2 = 0;
 		String s;
@@ -56,6 +59,18 @@ public class Main {
 			}
 		}
 
-	}	
-
+	}
+	
+	private static void shutdownHook() {
+		long t0 = System.currentTimeMillis();
+		while(true) {
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException IE) {
+				
+			}
+		}
+	}
+	
+	private static void log
 }
