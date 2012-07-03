@@ -1,9 +1,13 @@
 package smarthome.serial;
 
 import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.ResultSet;
 import java.util.Enumeration;
+
+import smarthome.sql.SQL;
 
 //Imports from RXTX Java Library
 import gnu.io.CommPortIdentifier;
@@ -14,6 +18,7 @@ import gnu.io.SerialPortEventListener;
 public class USBCommunication {
 
 	SerialPort serialPort;
+
 	private static final String LINUX_PORT = "/dev/ttyUSB0"; // The port we are
 																// going to use
 																// for linux.
@@ -25,13 +30,29 @@ public class USBCommunication {
 	private static final int BAUD = 9600;
 	private static final int TIME_OUT = 5000; // Connection time out boundary
 
-	// Initialize stuff
+	private SQL db = new SQL("", "", "", "", ""); // Creds to be added
+
+	// SQL Tables (Hardcoded)
+	private static final String COMMANDS_TABLE = "commands";
+	private static final String COMMANDS_LOG_TABLE = "command_log";
+	private static final String EVENTS_LOG_TABLE = "event_log";
+	private static final String TEMPERATURES_TABLE = "temperatures";
+
+	// ... More to be added
+
+	/* Initialize Stuff */
 	public void init() {
+
 		// Initializing time (in nano-seconds) in order to check the speed of
 		// our init() method
 		long start = System.nanoTime();
 		long elapsedTime;
+
+		// Connect to our database
+		db.dbConnect();
+
 		CommPortIdentifier PORT_ID = null;
+
 		Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
 
 		// Lookup port
@@ -78,28 +99,39 @@ public class USBCommunication {
 	public synchronized void serialEvent(SerialPortEvent e) {
 		if (e.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 			try {
-				// To be implemented with database..
 				FileWriter fw = new FileWriter("output.txt", true);
 				BufferedWriter bw = new BufferedWriter(fw);
 				int b1 = input.read();
 				int b2 = input.read();
 				int low = b1 & 0xff; // Defining byte0 range [0-255]
-				int high = b2 & 0xff; // Defining byte1 rang [0-255]
+				int high = b2 & 0xff; // Defining byte1 range [0-255]
 				bw.write("" + high + low);
 				bw.newLine();
 				bw.flush();
 				bw.close();
+				SQL.Query("INSERT INTO " + EVENTS_LOG_TABLE + " VALUES('" + b1
+						+ "', '" + b2 + "', now();");
 			} catch (Exception ex) {
 				System.err.println(ex.toString());
 			}
 		}
 	}
 
+	// Sends data to Serial Port and logs the action
 	public void sendData(byte b1, byte b2) {
 		try {
-			output.write(b1);
-			output.write(b2);
-			output.flush();
+			ResultSet s;
+			// Log the action
+			SQL.Query("INSERT INTO " + COMMANDS_LOG_TABLE + " VALUES('" + b1
+					+ "', '" + b2 + "', now();");
+			// Check for command existence
+			s = SQL.Select("SELECT byte1, byte2 FROM " + COMMANDS_TABLE
+					+ " WHERE byte1 =  " + b1 + " AND byte2 = " + b2 + ";");
+			if (s != null) {
+				output.write(b1);
+				output.write(b2);
+				output.flush();
+			}
 		} catch (Exception e) {
 			System.err.println(e.toString());
 		}
@@ -111,6 +143,18 @@ public class USBCommunication {
 			serialPort.removeEventListener();
 			serialPort.close();
 		}
+	}
+
+	/* Shows Indoors Temperature */
+	public void showIndoorsTemp() {
+		SQL.showSelectResult(SQL.Select("SELECT indoors_temp FROM "
+				+ TEMPERATURES_TABLE + "ORDER BY tid DESC LIMIT 1;"));
+	}
+
+	/* Shows Outdoors Temperature */
+	public void showOutdoorsTemp() {
+		SQL.showSelectResult(SQL.Select("SELECT outdoors_temp FROM "
+				+ TEMPERATURES_TABLE + "ORDER BY tid DESC LIMIT 1;"));
 	}
 
 }

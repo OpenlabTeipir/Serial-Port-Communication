@@ -37,7 +37,6 @@ public class USBCommunication {
 	private static final String COMMANDS_LOG_TABLE = "command_log";
 	private static final String EVENTS_LOG_TABLE = "event_log";
 	private static final String TEMPERATURES_TABLE = "temperatures";
-	private static final String DEVICES_TABLE = "devices";
 
 	// ... More to be added
 
@@ -157,12 +156,9 @@ public class USBCommunication {
 		SQL.showSelectResult(SQL.Select("SELECT outdoors_temp FROM "
 				+ TEMPERATURES_TABLE + "ORDER BY tid DESC LIMIT 1;"));
 	}
-
-	/* Gets specific device's state */
+	
 	public void getDeviceState(byte DEVICE_ADDRESS) {
-		SQL.showSelectResult(SQL.Select("SELECT state FROM " + DEVICES_TABLE
-				+ " WHERE address=" + DEVICE_ADDRESS
-				+ "ORDER BY did DESC LIMIT 1;"));
+		SQL.showSelectResult(SQL.Select("SELECT))
 	}
 
 }
